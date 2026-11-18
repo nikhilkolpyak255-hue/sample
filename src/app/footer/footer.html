@@ -1,0 +1,83 @@
+<footer class="footer">
+    <footer class="footer">
+        <div class="footer-container">
+
+            <!-- Platform Info -->
+            <div class="footer-box">
+                <a routerLink="/homepage">
+                    <h3>🌾 Farmer Connect</h3>
+                </a>
+                <p>Helping farmers connect with buyers and grow their business.</p>
+
+                <!-- Social Media Icons -->
+                <div class="social-icons">
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-x-twitter"></i>
+                    <i class="fa-brands fa-youtube"></i>
+                    <i class="fa-brands fa-square-whatsapp"></i>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-box">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li> <a routerLink="#">Login</a> </li>
+                    <li> <a routerLink="#">Register</a> </li>
+                    <li><a routerLink="/">Home</a></li>
+                    <li><a routerLink="">Products</a></li>
+
+                    <li><a routerLink="/">Junction</a></li>
+
+
+                </ul>
+            </div>
+
+            <!-- Support -->
+            <div class="footer-box">
+                <h4>Support</h4>
+                <p>📞 Helpline: +91 9XXXX </p>
+                <p>✉ support@farmerbidding.com</p>
+                <p>📍 India</p>
+            </div>
+
+            <div class="footer-box">
+                <h4>Contact Us</h4>
+
+                <form (submit)="submitForm($event)" novalidate>
+
+                    <!-- Name -->
+                    <div class="input-wrapper" [class.input-error]="submitted && !name">
+                        <input type="text" placeholder="Your Name" [(ngModel)]="name" name="name" />
+                    </div>
+                    <small class="error-text" *ngIf="submitted && !name">
+                        Name is required
+                    </small>
+
+                    <!-- Email -->
+                    <div class="input-wrapper" [class.input-error]="submitted && emailError">
+                        <input type="email" placeholder="Email" [(ngModel)]="email" name="email" />
+                    </div>
+                    <small class="error-text" *ngIf="submitted && emailError">
+                        Enter a valid email address
+                    </small>
+
+                    <!-- Message -->
+                    <div class="input-wrapper" [class.input-error]="submitted && messageError">
+                        <textarea placeholder="Message" [(ngModel)]="message" name="message"></textarea>
+                    </div>
+                    <small class="error-text" *ngIf="submitted && messageError">
+                        Message must be at least 10 characters
+                    </small>
+
+                    <button type="submit">Send</button>
+
+                </form>
+            </div>
+
+        </div>
+        <div class="footer-bottom">
+            © 2026 AgriConnect. All Rights Reserved. </div>
+    </footer>
+</footer>

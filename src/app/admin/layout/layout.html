@@ -1,0 +1,516 @@
+<div class="admin-layout">
+
+    <!-- =====================================================
+       DESKTOP SIDEBAR / NAVIGATION
+  ====================================================== -->
+
+    <aside class="sidebar" [class.collapsed]="isCollapsed">
+
+        <!-- =================================================
+         LOGO
+    ================================================== -->
+
+        <div class="sidebar-logo-container">
+
+            <a routerLink="/admin/dashboard" class="sidebar-logo">
+
+                <div class="logo-icon">
+                    <img src="assets/logo.jpeg" alt="Farmer Connect" class="logo-image">
+                </div>
+
+                <span *ngIf="!isCollapsed">
+                    Farmer-<strong>Connect</strong>
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <!-- =================================================
+         SIDEBAR NAVIGATION
+    ================================================== -->
+
+        <nav class="sidebar-nav">
+
+            <!-- DASHBOARD -->
+
+            <a routerLink="/admin/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                class="nav-item">
+
+                <i class="bi bi-speedometer2"></i>
+
+                <span *ngIf="!isCollapsed">
+                    Dashboard
+                </span>
+
+            </a>
+            <!-- New Farmers -->
+            <a routerLink="/admin/new" routerLinkActive="active" class="nav-item">
+
+                
+                <i class="bi bi-person-fill"></i>
+
+                <span *ngIf="!isCollapsed">
+                    New Farmers
+                </span>
+
+                <span *ngIf="!isCollapsed && pendingProducts > 0" class="nav-badge">
+
+                    {{ pendingProducts }}
+
+                </span>
+
+            </a>
+
+            <!-- New Customers -->
+            <a routerLink="/admin/new" routerLinkActive="active" class="nav-item">
+
+                
+                <i class="bi bi-person-fill"></i>
+
+                <span *ngIf="!isCollapsed">
+                    New Customers
+                </span>
+
+                <span *ngIf="!isCollapsed && pendingProducts > 0" class="nav-badge">
+
+                    {{ pendingProducts }}
+
+                </span>
+
+            </a>
+            <!-- REGISTERED FARMERS -->
+
+            <a routerLink="/admin/New-farmers" routerLinkActive="active" class="nav-item">
+
+                <i class="bi bi-person-fill"></i>
+
+                <span *ngIf="!isCollapsed">
+                    Registered Farmers
+                </span>
+
+            </a>
+
+
+            <!-- REGISTERED CUSTOMERS -->
+
+            <a routerLink="/admin/customers" routerLinkActive="active" class="nav-item">
+
+                <i class="bi bi-people-fill"></i>
+
+                <span *ngIf="!isCollapsed">
+                    Registered Customers
+                </span>
+
+            </a>
+
+
+            <!-- APPROVE FARMERS -->
+
+            <a routerLink="/admin/farmers/approve" routerLinkActive="active" class="nav-item">
+
+                <i class="bi bi-person-check-fill"></i>
+
+                <span *ngIf="!isCollapsed">
+                    Approve Farmers
+                </span>
+
+                <span *ngIf="!isCollapsed && pendingFarmers > 0" class="nav-badge">
+
+                    {{ pendingFarmers }}
+
+                </span>
+
+            </a>
+
+
+            <!-- APPROVE CUSTOMERS -->
+
+            <a routerLink="/admin/customers/approve" routerLinkActive="active" class="nav-item">
+
+                <i class="bi bi-person-plus-fill"></i>
+
+                <span *ngIf="!isCollapsed">
+                    Approve Customers
+                </span>
+
+                <span *ngIf="!isCollapsed && pendingCustomers > 0" class="nav-badge">
+
+                    {{ pendingCustomers }}
+
+                </span>
+
+            </a>
+
+
+            <!-- APPROVE PRODUCTS -->
+
+            <a routerLink="/admin/new" routerLinkActive="active" class="nav-item">
+
+                <i class="bi bi-box-seam-fill"></i>
+
+                <span *ngIf="!isCollapsed">
+                    Approve Products
+                </span>
+
+                <span *ngIf="!isCollapsed && pendingProducts > 0" class="nav-badge">
+
+                    {{ pendingProducts }}
+
+                </span>
+
+            </a>
+
+
+            <!-- REQUESTS -->
+
+            <a routerLink="/admin/requests" routerLinkActive="active" class="nav-item">
+
+                <i class="bi bi-chat-left-text-fill"></i>
+
+                <span *ngIf="!isCollapsed">
+                    Requests
+                </span>
+
+                <span *ngIf="!isCollapsed && requestCount > 0" class="nav-badge">
+
+                    {{ requestCount }}
+
+                </span>
+
+            </a>
+
+
+            <!-- REPLY REQUESTS -->
+
+            <a routerLink="/admin/replies" routerLinkActive="active" class="nav-item">
+
+                <i class="bi bi-reply-fill"></i>
+
+                <span *ngIf="!isCollapsed">
+                    Reply Requests
+                </span>
+
+            </a>
+
+        </nav>
+
+
+        <!-- =================================================
+         SIDEBAR BOTTOM
+    ================================================== -->
+
+        <div class="sidebar-bottom">
+
+            <!-- SETTINGS -->
+
+            <a routerLink="/admin/settings" routerLinkActive="active" class="nav-item">
+
+                <i class="bi bi-gear-fill"></i>
+
+                <span *ngIf="!isCollapsed">
+                    Settings
+                </span>
+
+            </a>
+
+
+            <!-- LOGOUT -->
+
+            <button type="button" class="nav-item logout-btn" (click)="logout()">
+
+                <i class="bi bi-box-arrow-right"></i>
+
+                <span *ngIf="!isCollapsed">
+                    Logout
+                </span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+       TOPBAR
+  ====================================================== -->
+
+    <header class="topbar" [class.sidebar-collapsed]="isCollapsed">
+
+        <!-- =================================================
+         SIDEBAR TOGGLE
+
+         Always shows hamburger.
+         No X / cross icon.
+    ================================================== -->
+
+        <div class="topbar-left">
+
+            <button type="button" class="sidebar-toggle" (click)="toggleSidebar()" aria-label="Toggle sidebar">
+
+                <i class="bi bi-list"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- =================================================
+         PAGE TITLE
+    ================================================== -->
+
+        <div class="topbar-title">
+
+            <span>
+                Administration
+            </span>
+
+        </div>
+
+
+        <!-- =================================================
+         ADMIN USER
+    ================================================== -->
+
+        <div class="admin-user">
+
+            <div class="user-icon">
+
+                <i class="bi bi-person-fill"></i>
+
+            </div>
+
+
+            <div class="user-details">
+
+                <strong>
+                    Administrator
+                </strong>
+
+                <small>
+                    Admin
+                </small>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+       MAIN CONTENT
+  ====================================================== -->
+
+    <main class="main-content" [class.sidebar-collapsed]="isCollapsed">
+
+        <router-outlet></router-outlet>
+
+    </main>
+
+
+
+    <!-- =====================================================
+       MOBILE BOTTOM NAVIGATION
+  ====================================================== -->
+
+    <nav class="mobile-bottom-nav">
+
+
+        <!-- HOME -->
+
+        <a routerLink="/admin/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+            class="mobile-nav-item">
+
+            <i class="bi bi-house-fill"></i>
+
+            <span>
+                Home
+            </span>
+
+        </a>
+
+
+        <!-- FARMERS -->
+
+        <a routerLink="/admin/farmers" routerLinkActive="active" class="mobile-nav-item">
+
+            <i class="bi bi-person-fill"></i>
+
+            <span>
+                Farmers
+            </span>
+
+        </a>
+
+
+        <!-- CUSTOMERS -->
+
+        <a routerLink="/admin/customers" routerLinkActive="active" class="mobile-nav-item">
+
+            <i class="bi bi-people-fill"></i>
+
+            <span>
+                Customers
+            </span>
+
+        </a>
+
+
+        <!-- PRODUCTS -->
+
+        <a routerLink="/admin/products" routerLinkActive="active" class="mobile-nav-item">
+
+            <i class="bi bi-box-seam-fill"></i>
+
+            <span>
+                Products
+            </span>
+
+        </a>
+
+
+        <!-- MORE -->
+
+        <button type="button" class="mobile-nav-item mobile-more" (click)="toggleMobileMore()">
+
+            <i class="bi bi-three-dots"></i>
+
+            <span>
+                More
+            </span>
+
+        </button>
+
+    </nav>
+
+
+
+    <!-- =====================================================
+       MOBILE MORE MENU
+  ====================================================== -->
+
+    <div class="mobile-more-menu" *ngIf="mobileMoreOpen">
+
+
+        <!-- APPROVE FARMERS -->
+
+        <a routerLink="/admin/farmers/approve" (click)="closeMobileMore()">
+
+            <i class="bi bi-person-check-fill"></i>
+
+            <span class="more-text">
+                Approve Farmers
+            </span>
+
+            <span *ngIf="pendingFarmers > 0" class="more-badge">
+
+                {{ pendingFarmers }}
+
+            </span>
+
+        </a>
+
+
+        <!-- APPROVE CUSTOMERS -->
+
+        <a routerLink="/admin/customers/approve" (click)="closeMobileMore()">
+
+            <i class="bi bi-person-plus-fill"></i>
+
+            <span class="more-text">
+                Approve Customers
+            </span>
+
+            <span *ngIf="pendingCustomers > 0" class="more-badge">
+
+                {{ pendingCustomers }}
+
+            </span>
+
+        </a>
+
+
+        <!-- APPROVE PRODUCTS -->
+
+        <a routerLink="/admin/dashboard" (click)="closeMobileMore()">
+
+            <i class="bi bi-box-seam-fill"></i>
+
+            <span class="more-text">
+                Approve Products
+            </span>
+
+            <span *ngIf="pendingProducts > 0" class="more-badge">
+
+                {{ pendingProducts }}
+
+            </span>
+
+        </a>
+
+
+        <!-- REQUESTS -->
+
+        <a routerLink="/admin/requests" (click)="closeMobileMore()">
+
+            <i class="bi bi-chat-left-text-fill"></i>
+
+            <span class="more-text">
+                Requests
+            </span>
+
+            <span *ngIf="requestCount > 0" class="more-badge">
+
+                {{ requestCount }}
+
+            </span>
+
+        </a>
+
+
+        <!-- REPLIES -->
+
+        <a routerLink="/admin/replies" (click)="closeMobileMore()">
+
+            <i class="bi bi-reply-fill"></i>
+
+            <span class="more-text">
+                Reply Requests
+            </span>
+
+        </a>
+
+
+        <!-- SETTINGS -->
+
+        <a routerLink="/admin/settings" (click)="closeMobileMore()">
+
+            <i class="bi bi-gear-fill"></i>
+
+            <span class="more-text">
+                Settings
+            </span>
+
+        </a>
+
+
+        <!-- LOGOUT -->
+
+        <button type="button" class="mobile-logout" (click)="logout()">
+
+            <i class="bi bi-box-arrow-right"></i>
+
+            <span class="more-text">
+                Logout
+            </span>
+
+        </button>
+
+    </div>
+
+</div>

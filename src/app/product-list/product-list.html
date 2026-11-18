@@ -1,0 +1,71 @@
+<div class="page">
+
+
+<!-- 
+  @if (loading) {
+
+  <div class="product-grid">
+
+    @for(item of [1,2,3,4,5,6,7,8,9];track $index){
+
+    <div class="product-card">
+
+      <ngx-skeleton-loader appearance="line" [theme]="{height:'200px',width:'100%'}">
+      </ngx-skeleton-loader>
+
+      <ngx-skeleton-loader appearance="line" [theme]="{height:'25px',width:'70%'}">
+      </ngx-skeleton-loader>
+
+      <ngx-skeleton-loader appearance="line" [theme]="{height:'18px',width:'100%'}">
+      </ngx-skeleton-loader>
+
+      <ngx-skeleton-loader appearance="line" [theme]="{height:'18px',width:'50%'}">
+      </ngx-skeleton-loader>
+
+      <ngx-skeleton-loader appearance="line" [theme]="{height:'45px',width:'100%'}">
+      </ngx-skeleton-loader>
+
+    </div>
+
+    }
+
+  </div> } -->
+
+   
+
+  <div class="product-grid">
+
+    @for(product of products;track product.p_id){
+
+    <div class="product-card">
+
+      <div class="image-box">
+        <img [src]="product.img1">
+      </div>
+
+      <div class="content">
+
+        <h2>{{product.p_name}}</h2>
+
+        <p>{{product.description}}</p>
+
+        <div class="date">
+          📅 {{product.DateTime}}
+        </div>
+
+        <button >
+          Buy Now
+        </button>
+
+      </div>
+
+    </div>
+
+    }
+
+  </div>
+
+  
+
+</div>
+<app-footer></app-footer>

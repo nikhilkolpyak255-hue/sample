@@ -1,0 +1,181 @@
+<div class="page">
+
+  <!-- ================= Skeleton Loader ================= -->
+
+  <!-- <div *ngIf="loading" class="product-grid">
+
+    <div class="product-card" *ngFor="let item of [1,2,3]">
+
+      <ngx-skeleton-loader appearance="line" [theme]="{
+          height:'240px',
+          width:'100%',
+          'border-radius':'18px 18px 0 0'
+        }">
+      </ngx-skeleton-loader>
+
+      <div class="content">
+
+        <ngx-skeleton-loader appearance="line" [theme]="{
+            height:'30px',
+            width:'70%',
+            'margin-bottom':'15px'
+          }">
+        </ngx-skeleton-loader>
+
+        <ngx-skeleton-loader appearance="line" [theme]="{
+            height:'18px',
+            width:'100%',
+            'margin-bottom':'10px'
+          }">
+        </ngx-skeleton-loader>
+
+        <ngx-skeleton-loader appearance="line" [theme]="{
+            height:'18px',
+            width:'80%',
+            'margin-bottom':'20px'
+          }">
+        </ngx-skeleton-loader>
+
+        <div class="info">
+
+          <ngx-skeleton-loader appearance="line" [theme]="{
+              height:'20px',
+              width:'70px'
+            }">
+          </ngx-skeleton-loader>
+
+          <ngx-skeleton-loader appearance="line" [theme]="{
+              height:'20px',
+              width:'60px'
+            }">
+          </ngx-skeleton-loader>
+
+        </div>
+
+        <div class="bottom">
+
+          <ngx-skeleton-loader appearance="line" [theme]="{
+              height:'35px',
+              width:'80px'
+            }">
+          </ngx-skeleton-loader>
+
+          <ngx-skeleton-loader appearance="line" [theme]="{
+              height:'42px',
+              width:'120px'
+            }">
+          </ngx-skeleton-loader>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div> -->
+
+  @if (loading) {
+
+  <div class="product-grid">
+
+    @for(item of [1,2,3,4,5,6,7,8,9];track $index){
+
+    <div class="product-card">
+
+      <ngx-skeleton-loader appearance="line" [theme]="{height:'200px',width:'100%'}">
+      </ngx-skeleton-loader>
+
+      <ngx-skeleton-loader appearance="line" [theme]="{height:'25px',width:'70%'}">
+      </ngx-skeleton-loader>
+
+      <ngx-skeleton-loader appearance="line" [theme]="{height:'18px',width:'100%'}">
+      </ngx-skeleton-loader>
+
+      <ngx-skeleton-loader appearance="line" [theme]="{height:'18px',width:'50%'}">
+      </ngx-skeleton-loader>
+
+      <ngx-skeleton-loader appearance="line" [theme]="{height:'45px',width:'100%'}">
+      </ngx-skeleton-loader>
+
+    </div>
+
+    }
+
+  </div>
+
+  }
+  <!-- ================= Product Cards ================= -->
+  @else {
+  <div class="product-grid">
+
+    <div class="product-card" *ngFor="let fertilizer of fertilizers">
+
+      <div [id]="'carousel' + fertilizer.id" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
+
+        <div class="carousel-inner">
+
+          <div class="carousel-item" *ngFor="let image of fertilizer.images; let i = index" [class.active]="i === 0">
+
+            <img [src]="image" class="d-block w-100" [alt]="fertilizer.name">
+
+          </div>
+
+        </div>
+
+        <!-- Badge -->
+
+        <span class="badge">
+          {{ fertilizer.type }}
+        </span>
+
+        <!-- Previous -->
+
+        <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carousel' + fertilizer.id"
+          data-bs-slide="prev">
+
+          <span class="carousel-control-prev-icon"></span>
+
+        </button>
+
+        <!-- Next -->
+
+        <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carousel' + fertilizer.id"
+          data-bs-slide="next">
+
+          <span class="carousel-control-next-icon"></span>
+
+        </button>
+
+      </div>
+
+      <div class="content">
+
+        <h2>{{ fertilizer.name }}</h2>
+
+        <p>{{ fertilizer.description }}</p>
+
+        <div class="info">
+
+          <span>⭐ {{ fertilizer.rating }}</span>
+
+          <span>{{ fertilizer.quantity }}</span>
+
+        </div>
+
+        <div class="bottom">
+
+          <h3>₹{{ fertilizer.price }}</h3>
+
+          <button (click)="buyNow(fertilizer)">
+            Buy Now
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+  }
+</div>

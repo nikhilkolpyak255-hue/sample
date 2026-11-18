@@ -1,0 +1,138 @@
+<div class="new-farmers-container">
+
+    <div class="page-header">
+        <div>
+            <h2>New Farmers</h2>
+            <p>Review farmer registrations and verify their documents.</p>
+        </div>
+
+        <span class="pending-count">
+            {{ pendingUsers.length }} Pending
+        </span>
+    </div>
+
+
+    <div class="farmer-card" *ngFor="let user of pendingUsers">
+
+        <!-- Farmer Information -->
+        <div class="farmer-section">
+
+            <div class="farmer-profile">
+
+                <div class="avatar">
+                    {{ user.name.charAt(0).toUpperCase() }}
+                </div>
+
+                <div>
+                    <h3>{{ user.name }}</h3>
+                    <p>{{ user.email }}</p>
+                    <span>
+                        Registered {{ user.createdAt | date:'mediumDate' }}
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="farmer-details">
+
+                <div class="detail">
+                    <label>Phone</label>
+                    <span>{{ user.phone }}</span>
+                </div>
+
+                <div class="detail">
+                    <label>Location</label>
+                    <span>{{ user.location }}</span>
+                </div>
+
+                <div class="detail">
+                    <label>Farmer ID</label>
+                    <span>#{{ user.id }}</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Documents -->
+        <div class="documents-section">
+
+            <h4>Submitted Documents</h4>
+
+            <div class="documents">
+
+                <!-- Document 1 -->
+                <div class="document-card">
+
+                    <div class="document-image">
+                        <img [src]="user.documents[0]" alt="Identity Document" />
+                    </div>
+
+                    <div class="document-info">
+                        <div>
+                            <strong>Identity Proof</strong>
+                            <span>Document 1</span>
+                        </div>
+
+                        <button class="view-btn" (click)="viewDocument(user.documents[0])">
+                            View
+                        </button>
+                    </div>
+
+                </div>
+
+
+                <!-- Document 2 -->
+                <div class="document-card">
+
+                    <div class="document-image">
+                        <img [src]="user.documents[1]" alt="Land Document" />
+                    </div>
+
+                    <div class="document-info">
+                        <div>
+                            <strong>Land Document</strong>
+                            <span>Document 2</span>
+                        </div>
+
+                        <button class="view-btn" (click)="viewDocument(user.documents[1])">
+                            View
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Actions -->
+        <div class="card-footer">
+
+            <button class="reject-btn" (click)="rejectUser(user)">
+                ✕ Reject
+            </button>
+
+            <button class="approve-btn" (click)="approveUser(user)">
+                ✓ Approve Farmer
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- Empty State -->
+    <div class="empty-state" *ngIf="pendingUsers.length === 0">
+        <div class="empty-icon">✓</div>
+
+        <h3>All farmers are reviewed</h3>
+
+        <p>
+            There are no pending farmer registrations.
+        </p>
+    </div>
+
+</div>

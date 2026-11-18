@@ -1,0 +1,75 @@
+<div class="container">
+
+  @if (loading) {
+
+    <div class="product-grid">
+
+      @for(item of [1,2,3,4,5,6]; track $index){
+
+        <div class="product-card">
+
+          <ngx-skeleton-loader appearance="line"
+            [theme]="{height:'220px',width:'100%'}">
+          </ngx-skeleton-loader>
+
+          <ngx-skeleton-loader appearance="line"
+            [theme]="{height:'22px',width:'80%'}">
+          </ngx-skeleton-loader>
+
+          <ngx-skeleton-loader appearance="line"
+            [theme]="{height:'18px',width:'100%'}">
+          </ngx-skeleton-loader>
+
+          <ngx-skeleton-loader appearance="line"
+            [theme]="{height:'18px',width:'70%'}">
+          </ngx-skeleton-loader>
+
+          <ngx-skeleton-loader appearance="line"
+            [theme]="{height:'40px',width:'100%'}">
+          </ngx-skeleton-loader>
+
+        </div>
+
+      }
+
+    </div>
+
+  } @else {
+
+    <div class="product-grid">
+
+      @for(product of product; track product.p_id){
+
+        <!-- <div class="product-card">
+
+          <div class="image-box">
+            <img [src]="product.image" [alt]="product.title">
+          </div>
+
+          <div class="card-body">
+
+            <h3>{{product.title}}</h3>
+
+            <p class="description">
+              {{product.description}}
+            </p>
+
+            <div class="date">
+              {{product.date}}
+            </div>
+
+            <button (click)="buyNow(product)">
+              Buy Now
+            </button>
+
+          </div>
+
+        </div> -->
+
+      }
+
+    </div>
+
+  }
+
+</div>

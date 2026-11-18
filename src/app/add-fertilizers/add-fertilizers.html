@@ -1,0 +1,311 @@
+<div class="container">
+
+  <div class="card">
+
+    <!-- ================= Title ================= -->
+
+    <div class="title">
+      <!-- <i class="fa-solid fa-seedling"></i> -->
+      <h2>Upload Fertilizer</h2>
+    </div>
+
+    <form #fertilizerForm="ngForm" (ngSubmit)="submit(fertilizerForm)">
+
+      <!-- ================= Image Upload ================= -->
+
+      <div class="image-container">
+
+        <!-- Image 1 -->
+
+        <div class="upload-box" (click)="file1.click()" (dragover)="onDragOver($event)"
+          (dragleave)="onDragLeave($event)" (drop)="onDrop($event,1)" [class.is-invalid]="submitted && !image1">
+
+          <input #file1 hidden type="file" accept="image/*" (change)="onFileSelected($event,1)">
+
+          <ng-container *ngIf="imagePreview1; else upload1">
+
+            <img [src]="imagePreview1" class="preview-image">
+
+            <span class="remove-btn" (click)="removeImage(1);$event.stopPropagation()">
+
+              <i class="fa-solid fa-xmark"></i>
+
+            </span>
+
+          </ng-container>
+
+          <ng-template #upload1>
+
+            <div class="upload-content">
+
+              <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+
+              <h3>Upload Image 1</h3>
+
+              <p>Click or Drag & Drop</p>
+
+            </div>
+
+          </ng-template>
+
+        </div>
+
+        <!-- Image 2 -->
+
+        <div class="upload-box" (click)="file2.click()" (dragover)="onDragOver($event)"
+          (dragleave)="onDragLeave($event)" (drop)="onDrop($event,2)" [class.is-invalid]="submitted && !image2">
+
+          <input #file2 hidden type="file" accept="image/*" (change)="onFileSelected($event,2)">
+
+          <ng-container *ngIf="imagePreview2; else upload2">
+
+            <img [src]="imagePreview2" class="preview-image">
+
+            <span class="remove-btn" (click)="removeImage(2);$event.stopPropagation()">
+
+              <i class="fa-solid fa-xmark"></i>
+
+            </span>
+
+          </ng-container>
+
+          <ng-template #upload2>
+
+            <div class="upload-content">
+
+              <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+
+              <h3>Upload Image 2</h3>
+
+              <p>Click or Drag & Drop</p>
+
+            </div>
+
+          </ng-template>
+
+        </div>
+
+      </div>
+
+      <!-- Image Validation -->
+
+      <div class="error text-center" *ngIf="submitted && (!image1 || !image2)">
+
+        Please upload both fertilizer images.
+
+      </div>
+
+      <!-- ================= Row 1 ================= -->
+
+      <div class="row">
+
+        <div class="form-group">
+
+          <label>Fertilizer Name</label>
+
+          <input type="text" name="fertilizerName" [(ngModel)]="fertilizer.fertilizerName" #fertilizerName="ngModel"
+            required minlength="3" placeholder="Enter fertilizer name"
+            [class.is-invalid]="fertilizerName.invalid && (fertilizerName.touched || submitted)">
+
+          <small class="error" *ngIf="fertilizerName.invalid && (fertilizerName.touched || submitted)">
+
+            <span *ngIf="fertilizerName.errors?.['required']">
+              Fertilizer name is required
+            </span>
+
+            <span *ngIf="fertilizerName.errors?.['minlength']">
+              Minimum 3 characters required
+            </span>
+
+          </small>
+
+        </div>
+
+        <div class="form-group">
+
+          <label>Fertilizer Type</label>
+
+          <select name="type" [(ngModel)]="fertilizer.type" #type="ngModel" required
+            [class.is-invalid]="type.invalid && (type.touched || submitted)">
+
+            <option value="">Select Type</option>
+
+            <option>Organic</option>
+
+            <option>Chemical</option>
+
+            <option>Bio Fertilizer</option>
+
+            <option>NPK</option>
+
+            <option>Liquid</option>
+
+          </select>
+
+          <small class="error" *ngIf="type.invalid && (type.touched || submitted)">
+
+            Fertilizer type is required.
+
+          </small>
+
+        </div>
+
+      </div>
+
+      <!-- ================= Row 2 ================= -->
+
+      <div class="row">
+
+        <div class="form-group">
+
+          <label>Brand</label>
+
+          <input type="text" name="brand" [(ngModel)]="fertilizer.brand" #brand="ngModel" required minlength="2"
+            placeholder="Enter brand" [class.is-invalid]="brand.invalid && (brand.touched || submitted)">
+
+          <small class="error" *ngIf="brand.invalid && (brand.touched || submitted)">
+
+            <span *ngIf="brand.errors?.['required']">
+
+              Brand is required.
+
+            </span>
+
+            <span *ngIf="brand.errors?.['minlength']">
+
+              Minimum 2 characters required.
+
+            </span>
+
+          </small>
+
+        </div>
+
+        <div class="form-group">
+
+          <label>Quantity (Kg)</label>
+
+          <input type="number" name="quantity" [(ngModel)]="fertilizer.quantity" #quantity="ngModel" required min="1"
+            (keydown)="preventNegative($event)" placeholder="Enter quantity"
+            [class.is-invalid]="quantity.invalid && (quantity.touched || submitted)">
+
+          <small class="error" *ngIf="quantity.invalid && (quantity.touched || submitted)">
+
+            <span *ngIf="quantity.errors?.['required']">
+
+              Quantity is required.
+
+            </span>
+
+            <span *ngIf="quantity.errors?.['min']">
+
+              Quantity must be greater than 0.
+
+            </span>
+
+          </small>
+
+        </div>
+
+      </div>
+
+      <!-- ================= Row 3 ================= -->
+
+      <div class="row">
+
+        <div class="form-group">
+
+          <label>Price (₹)</label>
+
+          <input type="number" name="price" [(ngModel)]="fertilizer.price" #price="ngModel" required min="1"
+            (keydown)="preventNegative($event)" placeholder="Enter price"
+            [class.is-invalid]="price.invalid && (price.touched || submitted)">
+
+          <small class="error" *ngIf="price.invalid && (price.touched || submitted)">
+
+            <span *ngIf="price.errors?.['required']">
+
+              Price is required.
+
+            </span>
+
+            <span *ngIf="price.errors?.['min']">
+
+              Price should be greater than 0.
+
+            </span>
+
+          </small>
+
+        </div>
+
+        <div class="form-group">
+
+          <label>Expiry Date</label>
+
+          <input type="date" name="expiryDate" [(ngModel)]="fertilizer.expiryDate" #expiryDate="ngModel" required
+            [class.is-invalid]="expiryDate.invalid && (expiryDate.touched || submitted)">
+
+          <small class="error" *ngIf="expiryDate.invalid && (expiryDate.touched || submitted)">
+
+            Expiry Date is required.
+
+          </small>
+
+        </div>
+
+      </div>
+
+      <!-- ================= Row 4 ================= -->
+
+      <div class="row">
+
+        <div class="form-group">
+
+          <label>Description</label>
+
+          <textarea rows="5" name="description" [(ngModel)]="fertilizer.description" #description="ngModel" required
+            minlength="10" placeholder="Enter fertilizer description"
+            [class.is-invalid]="description.invalid && (description.touched || submitted)">
+
+          </textarea>
+
+          <small class="error" *ngIf="description.invalid && (description.touched || submitted)">
+
+            <span *ngIf="description.errors?.['required']">
+
+              Description is required.
+
+            </span>
+
+            <span *ngIf="description.errors?.['minlength']">
+
+              Minimum 10 characters required.
+
+            </span>
+
+          </small>
+
+        </div>
+
+      </div>
+
+      <!-- ================= Submit ================= -->
+
+      <div class="button-section">
+
+        <button type="submit" class="upload-btn">
+
+          <i class="fa-solid fa-paper-plane"></i>
+
+          Upload Fertilizer
+
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

@@ -1,0 +1,885 @@
+<div class="container py-5">
+
+    <div class="card shadow-lg border-0 register-card">
+
+        <div class="card-body p-lg-5 p-4">
+
+            <!-- ================================================= -->
+            <!-- TITLE -->
+            <!-- ================================================= -->
+
+            <div class="text-center mb-4">
+
+                <h2 class="text-success fw-bold">
+
+                    <i class="fa-solid fa-user-plus me-2"></i>
+
+                    Registration
+
+                </h2>
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- FORM -->
+            <!-- ================================================= -->
+
+            <form #f="ngForm" (ngSubmit)="register(f)" novalidate>
+
+
+                <div class="row">
+
+
+                    <!-- ================================================= -->
+                    <!-- USERNAME -->
+                    <!-- ================================================= -->
+
+                    <div class="col-lg-6 mb-3">
+
+                        <label class="form-label fw-semibold">
+
+                            Username
+
+                            <span class="text-danger">*</span>
+
+                        </label>
+
+
+                        <div class="input-group">
+
+                            <span class="input-group-text">
+
+                                <i class="fa-solid fa-user"></i>
+
+                            </span>
+
+
+                            <input type="text" class="form-control" name="username" [(ngModel)]="user.username"
+                                (ngModelChange)="saveFormData()" #username="ngModel" required minlength="3"
+                                maxlength="30" pattern="^[A-Za-z ]+$" placeholder="Enter Username" [class.is-invalid]="
+                                    username.invalid &&
+                                    (username.touched || submitted)
+                                ">
+
+                        </div>
+
+
+                        <small class="text-danger" *ngIf="
+                                username.invalid &&
+                                (username.touched || submitted)
+                            ">
+
+
+                            <span *ngIf="
+                                    username.errors?.['required']
+                                ">
+
+                                Username is required.
+
+                            </span>
+
+
+                            <span *ngIf="
+                                    username.errors?.['minlength']
+                                ">
+
+                                Minimum 3 characters required.
+
+                            </span>
+
+
+                            <span *ngIf="
+                                    username.errors?.['maxlength']
+                                ">
+
+                                Maximum 30 characters allowed.
+
+                            </span>
+
+
+                            <span *ngIf="
+                                    username.errors?.['pattern']
+                                ">
+
+                                Only alphabets and spaces are allowed.
+
+                            </span>
+
+                        </small>
+
+                    </div>
+
+
+                    <!-- ================================================= -->
+                    <!-- EMAIL -->
+                    <!-- ================================================= -->
+
+                    <div class="col-lg-6 mb-3">
+
+                        <label class="form-label fw-semibold">
+
+                            Email
+
+                            <span class="text-danger">*</span>
+
+                        </label>
+
+
+                        <div class="input-group">
+
+                            <span class="input-group-text">
+
+                                <i class="fa-solid fa-envelope"></i>
+
+                            </span>
+
+
+                            <input type="email" class="form-control" name="email" [(ngModel)]="user.email"
+                                (ngModelChange)="saveFormData()" #email="ngModel" required email
+                                placeholder="Enter Email" [class.is-invalid]="
+                                    email.invalid &&
+                                    (email.touched || submitted)
+                                ">
+
+                        </div>
+
+
+                        <small class="text-danger" *ngIf="
+                                email.invalid &&
+                                (email.touched || submitted)
+                            ">
+
+
+                            <span *ngIf="
+                                    email.errors?.['required']
+                                ">
+
+                                Email is required.
+
+                            </span>
+
+
+                            <span *ngIf="
+                                    email.errors?.['email']
+                                ">
+
+                                Please enter a valid email address.
+
+                            </span>
+
+                        </small>
+
+                    </div>
+
+
+                    <!-- ================================================= -->
+                    <!-- PASSWORD -->
+                    <!-- ================================================= -->
+
+                    <div class="col-lg-6 mb-3">
+
+                        <label class="form-label fw-semibold">
+
+                            Password
+
+                            <span class="text-danger">*</span>
+
+                        </label>
+
+
+                        <div class="password-wrapper">
+
+                            <i class="fa-solid fa-lock lock-icon"></i>
+
+
+                            <input #passwordInput [type]="
+                                    showPassword
+                                    ? 'text'
+                                    : 'password'
+                                " class="form-control password-input" name="password" [(ngModel)]="user.password"
+                                (ngModelChange)="saveFormData()" #password="ngModel" required minlength="6"
+                                maxlength="20" placeholder="Enter Password" [class.is-invalid]="
+                                    password.invalid &&
+                                    (password.touched || submitted)
+                                ">
+
+
+                            <i class="fa-solid eye-icon" [class.fa-eye]="!showPassword"
+                                [class.fa-eye-slash]="showPassword" (click)="
+                                    togglePassword(passwordInput)
+                                ">
+                            </i>
+
+                        </div>
+
+
+                        <small class="text-danger" *ngIf="
+                                password.invalid &&
+                                (password.touched || submitted)
+                            ">
+
+
+                            <span *ngIf="
+                                    password.errors?.['required']
+                                ">
+
+                                Password is required.
+
+                            </span>
+
+
+                            <span *ngIf="
+                                    password.errors?.['minlength']
+                                ">
+
+                                Password must contain at least 6 characters.
+
+                            </span>
+
+
+                            <span *ngIf="
+                                    password.errors?.['maxlength']
+                                ">
+
+                                Password cannot exceed 20 characters.
+
+                            </span>
+
+                        </small>
+
+                    </div>
+
+
+                    <!-- ================================================= -->
+                    <!-- CONFIRM PASSWORD -->
+                    <!-- ================================================= -->
+
+                    <div class="col-lg-6 mb-3">
+
+                        <label class="form-label fw-semibold">
+
+                            Confirm Password
+
+                            <span class="text-danger">*</span>
+
+                        </label>
+
+
+                        <div class="password-wrapper">
+
+                            <i class="fa-solid fa-lock lock-icon"></i>
+
+
+                            <input #confirmPasswordInput [type]="
+                                    showConfirm
+                                    ? 'text'
+                                    : 'password'
+                                " class="form-control password-input" name="confirmPassword"
+                                [(ngModel)]="user.confirmPassword" (ngModelChange)="saveFormData()"
+                                #confirmPassword="ngModel" required placeholder="Confirm Password" [class.is-invalid]="
+                                    confirmPassword.invalid &&
+                                    (
+                                        confirmPassword.touched ||
+                                        submitted
+                                    )
+                                ">
+
+
+                            <i class="fa-solid eye-icon" [class.fa-eye]="!showConfirm"
+                                [class.fa-eye-slash]="showConfirm" (click)="
+                                    toggleConfirmPassword(
+                                        confirmPasswordInput
+                                    )
+                                ">
+                            </i>
+
+                        </div>
+
+
+                        <small class="text-danger" *ngIf="
+                                confirmPassword.touched ||
+                                submitted
+                            ">
+
+
+                            <span *ngIf="
+                                    confirmPassword.errors?.['required']
+                                ">
+
+                                Confirm Password is required.
+
+                            </span>
+
+
+                            <span *ngIf="
+                                    user.password &&
+                                    user.confirmPassword &&
+                                    user.password !==
+                                    user.confirmPassword
+                                ">
+
+                                Passwords do not match.
+
+                            </span>
+
+                        </small>
+
+                    </div>
+
+
+                    <!-- ================================================= -->
+                    <!-- MOBILE -->
+                    <!-- ================================================= -->
+
+                    <div class="col-lg-6 mb-3">
+
+                        <label class="form-label fw-semibold">
+
+                            Mobile Number
+
+                            <span class="text-danger">*</span>
+
+                        </label>
+
+
+                        <div class="input-group">
+
+                            <span class="input-group-text">
+
+                                <i class="fa-solid fa-phone"></i>
+
+                            </span>
+
+
+                            <input type="text" class="form-control" name="mobile" [(ngModel)]="user.mobile"
+                                (ngModelChange)="saveFormData()" #mobile="ngModel" required minlength="10"
+                                maxlength="10" pattern="^[6-9][0-9]{9}$" placeholder="Enter Mobile Number"
+                                [class.is-invalid]="
+                                    mobile.invalid &&
+                                    (mobile.touched || submitted)
+                                ">
+
+                        </div>
+
+
+                        <small class="text-danger" *ngIf="
+                                mobile.invalid &&
+                                (mobile.touched || submitted)
+                            ">
+
+
+                            <span *ngIf="
+                                    mobile.errors?.['required']
+                                ">
+
+                                Mobile Number is required.
+
+                            </span>
+
+
+                            <span *ngIf="
+                                    mobile.errors?.['pattern']
+                                ">
+
+                                Enter a valid 10-digit mobile number.
+
+                            </span>
+
+                        </small>
+
+                    </div>
+
+
+                    <!-- ================================================= -->
+                    <!-- ROLE -->
+                    <!-- ================================================= -->
+
+                    <div class="col-lg-6 mb-3">
+
+                        <label class="form-label fw-semibold">
+
+                            Role
+
+                            <span class="text-danger">*</span>
+
+                        </label>
+
+
+                        <select class="form-select" name="role" [(ngModel)]="user.role" (ngModelChange)="saveFormData()"
+                            #role="ngModel" required [class.is-invalid]="
+                                role.invalid &&
+                                (role.touched || submitted)
+                            ">
+
+
+                            <option value="">
+
+                                Select Role
+
+                            </option>
+
+
+                            <option value="Farmer">
+
+                                Farmer
+
+                            </option>
+
+
+                            <option value="Customer">
+
+                                Customer
+
+                            </option>
+                            <option value="Admin">
+
+                                Admin
+
+                            </option>
+
+
+                        </select>
+
+
+                        <small class="text-danger" *ngIf="
+                                role.invalid &&
+                                (role.touched || submitted)
+                            ">
+
+                            Role is required.
+
+                        </small>
+
+                    </div>
+
+
+                    <!-- ================================================= -->
+                    <!-- STATE -->
+                    <!-- ================================================= -->
+
+                    <div class="col-lg-6 mb-3">
+
+                        <label class="form-label fw-semibold">
+
+                            State
+
+                            <span class="text-danger">*</span>
+
+                        </label>
+
+
+                        <select class="form-select" name="state" [(ngModel)]="user.state"
+                            (ngModelChange)="saveFormData()" #state="ngModel" required [class.is-invalid]="
+                                state.invalid &&
+                                (state.touched || submitted)
+                            ">
+
+
+                            <option value="">
+
+                                Select State
+
+                            </option>
+
+
+                            <option *ngFor="let s of states" [value]="s">
+
+                                {{ s }}
+
+                            </option>
+
+
+                        </select>
+
+
+                        <small class="text-danger" *ngIf="
+                                state.invalid &&
+                                (state.touched || submitted)
+                            ">
+
+                            State is required.
+
+                        </small>
+
+                    </div>
+
+
+                    <!-- ================================================= -->
+                    <!-- CITY -->
+                    <!-- ================================================= -->
+
+                    <div class="col-lg-6 mb-3">
+
+                        <label class="form-label fw-semibold">
+
+                            City
+
+                            <span class="text-danger">*</span>
+
+                        </label>
+
+
+                        <select class="form-select" name="city" [(ngModel)]="user.city" (ngModelChange)="saveFormData()"
+                            #city="ngModel" required [class.is-invalid]="
+                                city.invalid &&
+                                (city.touched || submitted)
+                            ">
+
+
+                            <option value="">
+
+                                Select City
+
+                            </option>
+
+
+                            <option *ngFor="let c of cities" [value]="c">
+
+                                {{ c }}
+
+                            </option>
+
+
+                        </select>
+
+
+                        <small class="text-danger" *ngIf="
+                                city.invalid &&
+                                (city.touched || submitted)
+                            ">
+
+                            City is required.
+
+                        </small>
+
+                    </div>
+
+
+                    <!-- ================================================= -->
+                    <!-- ADDRESS -->
+                    <!-- ================================================= -->
+
+                    <div class="col-12 mb-4">
+
+                        <label class="form-label fw-semibold">
+
+                            Address
+
+                            <span class="text-danger">*</span>
+
+                        </label>
+
+
+                        <textarea rows="4" class="form-control" name="address" [(ngModel)]="user.address"
+                            (ngModelChange)="saveFormData()" #address="ngModel" required minlength="10" maxlength="200"
+                            placeholder="Enter Address" [class.is-invalid]="
+                                address.invalid &&
+                                (address.touched || submitted)
+                            ">
+                        </textarea>
+
+
+                        <small class="text-danger" *ngIf="
+                                address.invalid &&
+                                (address.touched || submitted)
+                            ">
+
+
+                            <span *ngIf="
+                                    address.errors?.['required']
+                                ">
+
+                                Address is required.
+
+                            </span>
+
+
+                            <span *ngIf="
+                                    address.errors?.['minlength']
+                                ">
+
+                                Minimum 10 characters required.
+
+                            </span>
+
+
+                            <span *ngIf="
+                                    address.errors?.['maxlength']
+                                ">
+
+                                Maximum 200 characters allowed.
+
+                            </span>
+
+                        </small>
+
+                    </div>
+
+
+                    <!-- ================================================= -->
+                    <!-- UPLOAD TITLE -->
+                    <!-- ================================================= -->
+
+                    <div class="col-12">
+
+                        <h3 class="upload-title">
+
+                            Upload Documents
+
+                        </h3>
+
+                    </div>
+
+
+                    <!-- ================================================= -->
+                    <!-- UPLOAD CONTAINER -->
+                    <!-- ================================================= -->
+
+                    <div class="col-12">
+
+                        <div class="upload-container">
+
+
+                            <!-- ========================================= -->
+                            <!-- AADHAAR FRONT -->
+                            <!-- ========================================= -->
+
+                            <div class="upload-box" [class.drag-over]="dragging2" [class.is-invalid]="
+                                    submitted &&
+                                    !aadhaarFrontPreview
+                                " (dragenter)="
+                                    dragEnter($event, 2)
+                                " (dragleave)="
+                                    dragLeave($event, 2)
+                                " (dragover)="
+                                    allowDrop($event)
+                                " (drop)="
+                                    onDrop($event, 2)
+                                " (click)="
+                                    aadhaarFrontInput.click()
+                                ">
+
+
+                                <input hidden #aadhaarFrontInput type="file" accept="image/*" (change)="
+                                        onImageSelect($event, 2)
+                                    ">
+
+
+                                <!-- IMAGE PREVIEW -->
+
+                                <ng-container *ngIf="
+                                        aadhaarFrontPreview;
+                                        else frontUpload
+                                    ">
+
+
+                                    <img [src]="
+                                            aadhaarFrontPreview
+                                        " class="preview-image" alt="Aadhaar Front">
+
+
+                                    <span class="remove-btn" (click)="
+                                            removeImage(2);
+                                            $event.stopPropagation()
+                                        ">
+
+                                        ✕
+
+                                    </span>
+
+
+                                </ng-container>
+
+
+                                <!-- UPLOAD CONTENT -->
+
+                                <ng-template #frontUpload>
+
+
+                                    <div class="upload-content">
+
+
+                                        <span class="material-icons upload-icon">
+
+                                            badge
+
+                                        </span>
+
+
+                                        <h5>
+
+                                            Aadhaar Front
+
+                                        </h5>
+
+
+                                        <small>
+
+                                            Click or Drag & Drop
+
+                                        </small>
+
+
+                                    </div>
+
+
+                                </ng-template>
+
+
+                            </div>
+
+
+                            <!-- ========================================= -->
+                            <!-- AADHAAR BACK -->
+                            <!-- ========================================= -->
+
+                            <div class="upload-box" [class.drag-over]="dragging3" [class.is-invalid]="
+                                    submitted &&
+                                    !aadhaarBackPreview
+                                " (dragenter)="
+                                    dragEnter($event, 3)
+                                " (dragleave)="
+                                    dragLeave($event, 3)
+                                " (dragover)="
+                                    allowDrop($event)
+                                " (drop)="
+                                    onDrop($event, 3)
+                                " (click)="
+                                    aadhaarBackInput.click()
+                                ">
+
+
+                                <input hidden #aadhaarBackInput type="file" accept="image/*" (change)="
+                                        onImageSelect($event, 3)
+                                    ">
+
+
+                                <!-- IMAGE PREVIEW -->
+
+                                <ng-container *ngIf="
+                                        aadhaarBackPreview;
+                                        else backUpload
+                                    ">
+
+
+                                    <img [src]="
+                                            aadhaarBackPreview
+                                        " class="preview-image" alt="Aadhaar Back">
+
+
+                                    <span class="remove-btn" (click)="
+                                            removeImage(3);
+                                            $event.stopPropagation()
+                                        ">
+
+                                        ✕
+
+                                    </span>
+
+
+                                </ng-container>
+
+
+                                <!-- UPLOAD CONTENT -->
+
+                                <ng-template #backUpload>
+
+
+                                    <div class="upload-content">
+
+
+                                        <span class="material-icons upload-icon">
+
+                                            credit_card
+
+                                        </span>
+
+
+                                        <h5>
+
+                                            Aadhaar Back
+
+                                        </h5>
+
+
+                                        <small>
+
+                                            Click or Drag & Drop
+
+                                        </small>
+
+
+                                    </div>
+
+
+                                </ng-template>
+
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================================================= -->
+                    <!-- IMAGE ERROR -->
+                    <!-- ================================================= -->
+
+                    <div class="col-12">
+
+                        <p class="image-error text-center" *ngIf="
+                                submitted &&
+                                (
+                                    !aadhaarFrontPreview ||
+                                    !aadhaarBackPreview
+                                )
+                            ">
+
+                            Please upload Aadhaar Front and Aadhaar Back images.
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- ================================================= -->
+                    <!-- REGISTER BUTTON -->
+                    <!-- ================================================= -->
+
+                    <div class="col-12">
+
+                        <div class="button-area">
+
+
+                            <button type="submit" class="register-btn" [disabled]="loading">
+
+
+                                <span class="material-icons">
+
+                                    how_to_reg
+
+                                </span>
+
+
+                                Register
+
+                            </button>
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

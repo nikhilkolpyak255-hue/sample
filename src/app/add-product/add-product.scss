@@ -1,0 +1,241 @@
+body {
+    background: #f5f7fa;
+}
+
+.card {
+    border: none;
+    border-radius: 18px;
+}
+
+.upload-container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.upload-box {
+
+    width: 450px;
+    height: 280px;
+
+    border: 3px dashed #28a745;
+
+    border-radius: 18px;
+
+    background: #f8fff8;
+
+    position: relative;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    transition: .3s;
+
+}
+
+.upload-box:hover {
+
+    transform: translateY(-5px);
+
+    border-color: #198754;
+
+    background: #f1fff4;
+
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .15);
+
+}
+.upload-box.is-invalid{
+    border:3px dashed red !important;
+}
+
+.is-invalid{
+    border-color:red !important;
+}
+
+.text-danger{
+    font-size:14px;
+}
+.drag-over {
+
+    border-style: solid;
+
+    border-color: #0d6efd;
+
+    background: #eef5ff;
+
+    transform: scale(1.03);
+
+}
+
+.placeholder {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    background: white;
+    justify-content: center;
+
+    text-align: center;
+
+    pointer-events: none;
+
+}
+
+.placeholder i {
+    font-size: 60px;
+    font-size: 70px;
+    color: #188B5A !important;
+    margin-bottom: 15px;
+    transition: .3s;
+
+}
+/* Input */
+.form-control.is-invalid,
+.form-control.ng-invalid.ng-touched {
+    border: 2px solid #dc3545 !important;
+    box-shadow: none !important;
+    background-image: none !important;
+}
+
+/* Select */
+.form-select.is-invalid,
+.form-select.ng-invalid.ng-touched {
+    border: 2px solid #dc3545 !important;
+    box-shadow: none !important;
+    background-image: none !important;
+}
+
+/* Textarea */
+textarea.form-control.is-invalid,
+textarea.form-control.ng-invalid.ng-touched {
+    border: 2px solid #dc3545 !important;
+    box-shadow: none !important;
+}
+
+/* Keep border red on focus */
+.form-control.is-invalid:focus,
+.form-select.is-invalid:focus,
+textarea.form-control.is-invalid:focus,
+.form-control.ng-invalid.ng-touched:focus,
+.form-select.ng-invalid.ng-touched:focus,
+textarea.form-control.ng-invalid.ng-touched:focus {
+    border-color: #dc3545 !important;
+    box-shadow: none !important;
+}
+// .upload-box:hover .placeholder i{
+
+//     transform:translateY(-8px);
+
+// }
+
+.placeholder h5 {
+
+    font-weight: 600;
+
+    margin-bottom: 8px;
+
+}
+
+.placeholder small {
+
+    color: #666;
+
+}
+
+.preview-image {
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    user-select: none;
+    -webkit-user-drag: none;
+    // transition: .3s;
+
+}
+
+.upload-box:hover .preview-image {
+
+    transform: scale(1.05);
+
+}
+
+
+.remove-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #dc3545;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    transition: .3s;
+}
+
+.remove-btn:hover {
+    background: #bb2d3b;
+    transform: scale(1.1);
+}
+
+
+
+label {
+    font-weight: 600;
+}
+
+.form-control.ng-invalid.ng-touched,
+.form-select.ng-invalid.ng-touched {
+
+    border: 2px solid #dc3545;
+
+}
+
+.form-control.ng-valid.ng-touched,
+.form-select.ng-valid.ng-touched {
+
+    border: 2px solid #198754;
+
+}
+
+.text-danger {
+
+    font-size: 13px;
+}
+
+.form-control {
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.btn-success {
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 17px;
+}
+
+@media(max-width:768px) {
+
+    .upload-box {
+
+        width: 100%;
+
+        height: 250px;
+
+    }
+
+}

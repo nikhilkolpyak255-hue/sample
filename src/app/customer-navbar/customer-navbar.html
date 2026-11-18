@@ -1,0 +1,280 @@
+<div class="app">
+
+  <!-- =====================================================
+       TOP NAVBAR
+  ====================================================== -->
+
+  <header class="navbar">
+
+    <!-- LEFT -->
+    <div class="left">
+
+      <button
+        type="button"
+        class="menu-btn"
+        (click)="toggleSidebar()">
+
+        <i class="bi bi-list"></i>
+
+      </button>
+
+
+      <!-- LOGO -->
+
+      <div class="logo">
+
+        <img
+          src="assets/logo.jpeg"
+          alt="Farmer Connect"
+          routerLink="/customer/homepage">
+
+        <a routerLink="/customer/homepage">
+          <span>Farmer Connect</span>
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <div class="search">
+
+      <input
+        type="text"
+        placeholder="Search Products">
+
+    </div>
+
+
+    <!-- RIGHT -->
+
+    <div class="right">
+
+      <img
+        src="assets/profile.webp"
+        class="profile"
+        alt="Profile">
+
+    </div>
+
+  </header>
+
+
+
+  <!-- =====================================================
+       DESKTOP SIDEBAR
+  ====================================================== -->
+
+  <aside
+    class="sidebar"
+    [class.open]="sidebarOpen">
+
+    <h4>
+      All Links
+    </h4>
+
+
+    <ul>
+
+      <!-- ABOUT -->
+
+      <li
+        routerLink="/customer/aboutus"
+        routerLinkActive="active"
+        (click)="closeSidebar()">
+
+        <span>
+          About Us
+        </span>
+
+        <i class="bi bi-chevron-right"></i>
+
+      </li>
+
+
+      <!-- PRODUCTS -->
+
+      <li
+        routerLink="/customer/products"
+        routerLinkActive="active"
+        (click)="closeSidebar()">
+
+        <span>
+          Products
+        </span>
+
+        <i class="bi bi-chevron-right"></i>
+
+      </li>
+
+
+      <!-- WASTE -->
+
+      <li
+        routerLink="/customer/products"
+        routerLinkActive="active"
+        (click)="closeSidebar()">
+
+        <span>
+          Waste
+        </span>
+
+        <i class="bi bi-chevron-right"></i>
+
+      </li>
+
+
+      <!-- PENDING -->
+
+      <li
+        routerLink="/customer/pending-products"
+        routerLinkActive="active"
+        (click)="closeSidebar()">
+
+        <span>
+          Pending Products
+        </span>
+
+        <i class="bi bi-chevron-right"></i>
+
+      </li>
+
+
+      <!-- HISTORY -->
+
+      <li
+        routerLink="/customer/history"
+        routerLinkActive="active"
+        (click)="closeSidebar()">
+
+        <span>
+          History
+        </span>
+
+        <i class="bi bi-chevron-right"></i>
+
+      </li>
+
+    </ul>
+
+  </aside>
+
+
+
+  <!-- =====================================================
+       DESKTOP OVERLAY
+  ====================================================== -->
+
+  <div
+    class="overlay"
+    *ngIf="sidebarOpen"
+    (click)="closeSidebar()">
+  </div>
+
+
+
+  <!-- =====================================================
+       MAIN CONTENT
+  ====================================================== -->
+
+  <main class="content">
+
+    <router-outlet></router-outlet>
+
+  </main>
+
+
+
+  <!-- =====================================================
+       MOBILE BOTTOM NAVIGATION
+       Instagram-style
+  ====================================================== -->
+
+  <nav class="mobile-bottom-nav">
+
+
+    <!-- HOME -->
+
+    <a
+      routerLink="/customer/homepage"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="mobile-nav-item">
+
+      <i class="bi bi-house-fill"></i>
+
+      <span>
+        Home
+      </span>
+
+    </a>
+
+
+    <!-- PRODUCTS -->
+
+    <a
+      routerLink="/customer/products"
+      routerLinkActive="active"
+      class="mobile-nav-item">
+
+      <i class="bi bi-shop"></i>
+
+      <span>
+        Products
+      </span>
+
+    </a>
+
+
+    <!-- WASTE -->
+
+    <a
+      routerLink="/customer/products"
+      routerLinkActive="active"
+      class="mobile-nav-item">
+
+      <i class="bi bi-recycle"></i>
+
+      <span>
+        Waste
+      </span>
+
+    </a>
+
+
+    <!-- HISTORY -->
+
+    <a
+      routerLink="/customer/history"
+      routerLinkActive="active"
+      class="mobile-nav-item">
+
+      <i class="bi bi-clock-history"></i>
+
+      <span>
+        History
+      </span>
+
+    </a>
+
+
+    <!-- PROFILE -->
+
+    <a
+      routerLink="/customer/profile"
+      routerLinkActive="active"
+      class="mobile-nav-item">
+
+      <i class="bi bi-person-circle"></i>
+
+      <span>
+        Profile
+      </span>
+
+    </a>
+
+  </nav>
+
+</div>

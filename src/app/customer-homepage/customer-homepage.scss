@@ -1,0 +1,16 @@
+.layout {
+  display: flex;
+  height: 100vh;  
+}
+
+app-customer-navbar {
+  background-color: #f1f1f1; 
+
+}
+
+.content {
+  flex: 1; 
+
+  overflow-y: auto; 
+}
+ 

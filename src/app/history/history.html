@@ -1,0 +1,75 @@
+<div class="container mt-4">
+  <div class="card shadow">
+    <div class="card-header bg-success text-white">
+      <h4 class="mb-0">Purchase History</h4>
+    </div>
+
+    <div class="card-body">
+
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search Product"
+            [(ngModel)]="searchText">
+        </div>
+
+        <div class="col-md-3">
+          <select class="form-select" [(ngModel)]="selectedCategory">
+            <option value="">All Categories</option>
+            <option value="Seed">Seeds</option>
+            <option value="Fertilizer">Fertilizer</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead class="table-success">
+            <tr>
+              <th>#</th>
+              <th>Purchase Date</th>
+              <th>Product Name</th>
+              <th>Category</th>
+              <th>Quantity</th>
+              <th>Unit</th>
+              <th>Price</th>
+              <th>Total</th>
+              <th>Supplier</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of filteredPurchases(); let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ item.purchaseDate | date:'dd/MM/yyyy' }}</td>
+              <td>{{ item.productName }}</td>
+              <td>
+                <span
+                  class="badge"
+                  [ngClass]="item.category === 'Seed'
+                    ? 'bg-primary'
+                    : 'bg-warning text-dark'">
+                  {{ item.category }}
+                </span>
+              </td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.unit }}</td>
+              <td>₹{{ item.price }}</td>
+              <td>₹{{ item.quantity * item.price }}</td>
+              <td>{{ item.supplier }}</td>
+            </tr>
+
+            <tr *ngIf="filteredPurchases().length === 0">
+              <td colspan="9" class="text-center text-muted">
+                No purchase history found.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>

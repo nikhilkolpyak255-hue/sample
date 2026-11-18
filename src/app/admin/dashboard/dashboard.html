@@ -1,0 +1,708 @@
+<div class="dashboard-container container-fluid">
+
+
+    <!-- =====================================================
+       DASHBOARD HEADER
+  ====================================================== -->
+
+    <section class="dashboard-header">
+
+        <div class="dashboard-heading">
+
+            <div class="dashboard-header-icon">
+                <i class="bi bi-grid-1x2-fill"></i>
+            </div>
+
+            <div>
+
+                <h1>
+                    Admin Dashboard
+                </h1>
+
+                <p>
+                    Welcome back, Administrator
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="system-status">
+
+            <span class="status-dot"></span>
+
+            System Live
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+       DASHBOARD CARDS
+  ====================================================== -->
+
+    <div class="row g-4">
+
+
+        <!-- =================================================
+         REGISTERED FARMERS
+    ================================================== -->
+
+        <div class="col-12 col-sm-6 col-xl-4">
+
+            <div class="dashboard-card">
+
+                <div class="card-top">
+
+                    <div class="card-icon farmers-icon">
+                        <i class="bi bi-person-badge-fill"></i>
+                    </div>
+
+                    <span class="status-badge">
+                        Active
+                    </span>
+
+                </div>
+
+
+                <h2>
+                    Registered Farmers
+                </h2>
+
+                <p>
+                    View and manage all registered farmers,
+                    profiles and land details.
+                </p>
+
+
+                <div class="card-stat">
+
+                    <strong>
+                        {{ farmerCount || 0 }}
+                    </strong>
+
+                    <span>
+                        Farmers
+                    </span>
+
+                </div>
+
+
+                <a routerLink="/admin/farmers" class="card-button">
+
+                    View Farmers
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+         REGISTERED CUSTOMERS
+    ================================================== -->
+
+        <div class="col-12 col-sm-6 col-xl-4">
+
+            <div class="dashboard-card">
+
+                <div class="card-top">
+
+                    <div class="card-icon customers-icon">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+
+                    <span class="status-badge">
+                        Active
+                    </span>
+
+                </div>
+
+
+                <h2>
+                    Registered Customers
+                </h2>
+
+                <p>
+                    View customer accounts and monitor
+                    buyer activities and statuses.
+                </p>
+
+
+                <div class="card-stat">
+
+                    <strong>
+                        {{ customerCount || 0 }}
+                    </strong>
+
+                    <span>
+                        Customers
+                    </span>
+
+                </div>
+
+
+                <a routerLink="/admin/customers" class="card-button">
+
+                    View Customers
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+         PRODUCTS
+    ================================================== -->
+
+        <div class="col-12 col-sm-6 col-xl-4">
+
+            <div class="dashboard-card">
+
+                <div class="card-top">
+
+                    <div class="card-icon products-icon">
+                        <i class="bi bi-box-seam-fill"></i>
+                    </div>
+
+                    <span class="status-badge">
+                        Active
+                    </span>
+
+                </div>
+
+
+                <h2>
+                    Products
+                </h2>
+
+                <p>
+                    Review agricultural products, pricing,
+                    listings and stock availability.
+                </p>
+
+
+                <div class="card-stat">
+
+                    <strong>
+                        {{ productCount || 0 }}
+                    </strong>
+
+                    <span>
+                        Products
+                    </span>
+
+                </div>
+
+
+                <a routerLink="/admin/products" class="card-button">
+
+                    View Products
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+         PENDING FARMERS
+    ================================================== -->
+
+        <div class="col-12 col-sm-6 col-xl-4">
+
+            <div class="dashboard-card pending-card">
+
+                <div class="card-top">
+
+                    <div class="card-icon pending-icon">
+                        <i class="bi bi-person-check-fill"></i>
+                    </div>
+
+                    <span *ngIf="pendingFarmers > 0" class="pending-badge">
+
+                        {{ pendingFarmers }} Pending
+
+                    </span>
+
+                </div>
+
+
+                <h2>
+                    New Farmers
+                </h2>
+
+                <p>
+                    Verify new farmer registrations waiting
+                    for administrator approval.
+                </p>
+
+
+                <div class="card-stat">
+
+                    <strong>
+                        {{ pendingFarmers || 0 }}
+                    </strong>
+
+                    <span>
+                        Pending
+                    </span>
+
+                </div>
+
+
+                <a routerLink="/admin/farmers/approve" class="card-button">
+
+                    Review Farmers
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+         PENDING CUSTOMERS
+    ================================================== -->
+
+        <div class="col-12 col-sm-6 col-xl-4">
+
+            <div class="dashboard-card pending-card">
+
+                <div class="card-top">
+
+                    <div class="card-icon pending-icon">
+                        <i class="bi bi-person-plus-fill"></i>
+                    </div>
+
+                    <span *ngIf="pendingCustomers > 0" class="pending-badge">
+
+                        {{ pendingCustomers }} Pending
+
+                    </span>
+
+                </div>
+
+
+                <h2>
+                    New Customers
+                </h2>
+
+                <p>
+                    Verify customer registrations waiting
+                    for administrator approval.
+                </p>
+
+
+                <div class="card-stat">
+
+                    <strong>
+                        {{ pendingCustomers || 0 }}
+                    </strong>
+
+                    <span>
+                        Pending
+                    </span>
+
+                </div>
+
+
+                <a routerLink="/admin/customers/approve" class="card-button">
+
+                    Review Customers
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+         PENDING PRODUCTS
+    ================================================== -->
+
+        <div class="col-12 col-sm-6 col-xl-4">
+
+            <div class="dashboard-card pending-card">
+
+                <div class="card-top">
+
+                    <div class="card-icon pending-icon">
+                        <i class="bi bi-box-arrow-in-down-fill"></i>
+                    </div>
+
+                    <span *ngIf="pendingProducts > 0" class="pending-badge">
+
+                        {{ pendingProducts }} Pending
+
+                    </span>
+
+                </div>
+
+
+                <h2>
+                    Product Approvals
+                </h2>
+
+                <p>
+                    Review products submitted by farmers
+                    before making them available.
+                </p>
+
+
+                <div class="card-stat">
+
+                    <strong>
+                        {{ pendingProducts || 0 }}
+                    </strong>
+
+                    <span>
+                        Pending
+                    </span>
+
+                </div>
+
+
+                <a routerLink="/admin/products/approve" class="card-button">
+
+                    Review Products
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+         REQUESTS
+    ================================================== -->
+
+        <div class="col-12 col-sm-6 col-xl-4">
+
+            <div class="dashboard-card">
+
+                <div class="card-top">
+
+                    <div class="card-icon requests-icon">
+                        <i class="bi bi-chat-left-text-fill"></i>
+                    </div>
+
+                    <span class="status-badge">
+                        Requests
+                    </span>
+
+                </div>
+
+
+                <h2>
+                    Requests
+                </h2>
+
+                <p>
+                    Manage purchase requests, equipment
+                    requests and crop orders.
+                </p>
+
+
+                <div class="card-stat">
+
+                    <strong>
+                        {{ requestCount || 0 }}
+                    </strong>
+
+                    <span>
+                        Requests
+                    </span>
+
+                </div>
+
+
+                <a routerLink="/admin/requests" class="card-button">
+
+                    View Requests
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+         REPLIES
+    ================================================== -->
+
+        <div class="col-12 col-sm-6 col-xl-4">
+
+            <div class="dashboard-card">
+
+                <div class="card-top">
+
+                    <div class="card-icon replies-icon">
+                        <i class="bi bi-reply-fill"></i>
+                    </div>
+
+                    <span class="status-badge">
+                        Replies
+                    </span>
+
+                </div>
+
+
+                <h2>
+                    Reply Requests
+                </h2>
+
+                <p>
+                    View and respond to requests that require
+                    an administrator reply.
+                </p>
+
+
+                <div class="card-stat">
+
+                    <strong>
+                        {{ replyCount || 0 }}
+                    </strong>
+
+                    <span>
+                        Replies
+                    </span>
+
+                </div>
+
+
+                <a routerLink="/admin/replies" class="card-button">
+
+                    View Replies
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+         SETTINGS
+    ================================================== -->
+
+        <div class="col-12 col-sm-6 col-xl-4">
+
+            <div class="dashboard-card">
+
+                <div class="card-top">
+
+                    <div class="card-icon settings-icon">
+                        <i class="bi bi-gear-fill"></i>
+                    </div>
+
+                    <span class="status-badge">
+                        Admin
+                    </span>
+
+                </div>
+
+
+                <h2>
+                    Settings
+                </h2>
+
+                <p>
+                    Manage administrator settings and
+                    Farmer-Connect configuration.
+                </p>
+
+
+                <div class="card-stat">
+
+                    <strong class="settings-stat">
+                        Admin
+                    </strong>
+
+                    <span>
+                        Configuration
+                    </span>
+
+                </div>
+
+
+                <a routerLink="/admin/settings" class="card-button">
+
+                    Open Settings
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+       QUICK NAVIGATION
+  ====================================================== -->
+
+    <section class="quick-navigation">
+
+
+        <!-- QUICK HEADER -->
+
+        <div class="quick-header">
+
+            <div class="quick-icon">
+                <i class="bi bi-lightning-fill"></i>
+            </div>
+
+            <div>
+
+                <h2>
+                    Quick Navigation
+                </h2>
+
+                <p>
+                    Quickly access commonly used admin features.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- QUICK LINKS -->
+
+        <div class="row g-3">
+
+
+            <!-- APPROVE FARMERS -->
+
+            <div class="col-12 col-sm-6 col-lg">
+
+                <a routerLink="/admin/farmers/approve" class="quick-link">
+
+                    <i class="bi bi-person-check-fill"></i>
+
+                    <span>
+                        Approve Farmers
+                    </span>
+
+                </a>
+
+            </div>
+
+
+
+            <!-- APPROVE CUSTOMERS -->
+
+            <div class="col-12 col-sm-6 col-lg">
+
+                <a routerLink="/admin/customers/approve" class="quick-link">
+
+                    <i class="bi bi-person-plus-fill"></i>
+
+                    <span>
+                        Approve Customers
+                    </span>
+
+                </a>
+
+            </div>
+
+
+
+            <!-- APPROVE PRODUCTS -->
+
+            <div class="col-12 col-sm-6 col-lg">
+
+                <a routerLink="/admin/new-products" class="quick-link">
+
+                    <i class="bi bi-box-seam-fill"></i>
+
+                    <span>
+                        Approve Products
+                    </span>
+
+                </a>
+
+            </div>
+
+
+
+            <!-- REQUESTS -->
+
+            <div class="col-12 col-sm-6 col-lg">
+
+                <a routerLink="/admin/requests" class="quick-link">
+
+                    <i class="bi bi-chat-left-text-fill"></i>
+
+                    <span>
+                        Requests
+                    </span>
+
+                </a>
+
+            </div>
+
+
+
+            <!-- SETTINGS -->
+
+            <div class="col-12 col-sm-6 col-lg">
+
+                <a routerLink="/admin/settings" class="quick-link">
+
+                    <i class="bi bi-gear-fill"></i>
+
+                    <span>
+                        Settings
+                    </span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>

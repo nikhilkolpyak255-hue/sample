@@ -1,0 +1,337 @@
+<div class="container">
+
+  <div class="card">
+
+    <div class="title">
+      <i class="fa-solid fa-upload waste-upload-icon text-success"></i>
+      <h2>Waste Upload</h2>
+      
+    </div>
+ <p class="text-center text-muted mb-4">
+      Upload product images
+    </p>
+    <form #wasteForm="ngForm" (ngSubmit)="submit(wasteForm)">
+
+      <!-- ================= Images ================= -->
+
+      <div class="image-container">
+
+        <!-- Image 1 -->
+
+        <div class="upload-box"
+             (click)="file1.click()"
+             (dragover)="onDragOver($event)"
+             (dragleave)="onDragLeave($event)"
+             (drop)="onDrop($event,1)"
+             [class.is-invalid]="submitted && !image1">
+
+          <input
+            #file1
+            hidden
+            type="file"
+            accept="image/*"
+            (change)="onFileSelected($event,1)">
+
+          <ng-container *ngIf="imagePreview1; else upload1">
+
+            <img [src]="imagePreview1" class="preview-image">
+
+            <span class="remove-btn"
+                  (click)="removeImage(1); $event.stopPropagation()">
+              <i class="fa-solid fa-xmark"></i>
+            </span>
+
+          </ng-container>
+
+          <ng-template #upload1>
+
+            <div class="upload-content">
+
+              <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+
+              <h3>Image 1</h3>
+
+              <p>Drag & Drop</p>
+
+              <span>or Click Here</span>
+
+            </div>
+
+          </ng-template>
+
+        </div>
+
+        <!-- Image 2 -->
+
+        <div class="upload-box"
+             (click)="file2.click()"
+             (dragover)="onDragOver($event)"
+             (dragleave)="onDragLeave($event)"
+             (drop)="onDrop($event,2)"
+             [class.is-invalid]="submitted && !image2">
+
+          <input
+            #file2
+            hidden
+            type="file"
+            accept="image/*"
+            (change)="onFileSelected($event,2)">
+
+          <ng-container *ngIf="imagePreview2; else upload2">
+
+            <img [src]="imagePreview2" class="preview-image">
+
+            <span class="remove-btn"
+                  (click)="removeImage(2); $event.stopPropagation()">
+              <i class="fa-solid fa-xmark"></i>
+            </span>
+
+          </ng-container>
+
+          <ng-template #upload2>
+
+            <div class="upload-content">
+
+              <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+
+              <h3>Image 2</h3>
+
+              <p>Drag & Drop</p>
+
+              <span>or Click Here</span>
+
+            </div>
+
+          </ng-template>
+
+        </div>
+
+      </div>
+
+      <!-- Image Validation -->
+
+      <div class="error text-center"
+           *ngIf="submitted && (!image1 || !image2)">
+        Please upload both images.
+      </div>
+
+      <!-- ================= Row 1 ================= -->
+
+      <div class="row">
+
+        <!-- Waste Name -->
+
+        <div class="form-group">
+
+          <label>Waste Name</label>
+
+          <input
+            type="text"
+            name="wasteName"
+            [(ngModel)]="waste.wasteName"
+            #wasteName="ngModel"
+            required
+            minlength="3"
+            placeholder="Enter waste name"
+            [class.is-invalid]="wasteName.invalid && (wasteName.touched || submitted)">
+
+          <small class="error"
+                 *ngIf="wasteName.invalid && (wasteName.touched || submitted)">
+
+            <span *ngIf="wasteName.errors?.['required']">
+              Waste name is required.
+            </span>
+
+            <span *ngIf="wasteName.errors?.['minlength']">
+              Minimum 3 characters required.
+            </span>
+
+          </small>
+
+        </div>
+
+        <!-- Category -->
+
+        <div class="form-group">
+
+          <label>Category</label>
+
+          <select
+            name="category"
+            [(ngModel)]="waste.category"
+            #category="ngModel"
+            required
+            [class.is-invalid]="category.invalid && (category.touched || submitted)">
+
+            <option value="">Select Category</option>
+            <option>Plastic</option>
+            <option>Paper</option>
+            <option>Glass</option>
+            <option>Metal</option>
+            <option>Organic</option>
+            <option>E-Waste</option>
+
+          </select>
+
+          <small class="error"
+                 *ngIf="category.invalid && (category.touched || submitted)">
+            Category is required.
+          </small>
+
+        </div>
+
+      </div>
+
+      <!-- ================= Row 2 ================= -->
+
+      <div class="row">
+
+        <!-- Quantity -->
+
+        <div class="form-group">
+
+          <label>Quantity (Kg)</label>
+
+          <input
+            type="number"
+            name="quantity"
+            [(ngModel)]="waste.quantity"
+            #quantity="ngModel"
+            required
+            min="1"
+            placeholder="Enter quantity"
+            (keydown)="preventNegative($event)"
+            [class.is-invalid]="quantity.invalid && (quantity.touched || submitted)">
+
+          <small class="error"
+                 *ngIf="quantity.invalid && (quantity.touched || submitted)">
+
+            <span *ngIf="quantity.errors?.['required']">
+              Quantity is required.
+            </span>
+
+            <span *ngIf="quantity.errors?.['min']">
+              Quantity must be greater than 0.
+            </span>
+
+          </small>
+
+        </div>
+
+        <!-- Price -->
+
+        <div class="form-group">
+
+          <label>Price (₹)</label>
+
+          <input
+            type="number"
+            name="price"
+            [(ngModel)]="waste.price"
+            #price="ngModel"
+            required
+            min="1"
+            placeholder="Enter price"
+            (keydown)="preventNegative($event)"
+            [class.is-invalid]="price.invalid && (price.touched || submitted)">
+
+          <small class="error"
+                 *ngIf="price.invalid && (price.touched || submitted)">
+
+            <span *ngIf="price.errors?.['required']">
+              Price is required.
+            </span>
+
+            <span *ngIf="price.errors?.['min']">
+              Price must be greater than 0.
+            </span>
+
+          </small>
+
+        </div>
+
+      </div>      <!-- ================= Row 3 ================= -->
+
+      <div class="row">
+
+        <!-- Location -->
+
+        <div class="form-group">
+
+          <label>Location</label>
+
+          <input
+            type="text"
+            name="location"
+            [(ngModel)]="waste.location"
+            #location="ngModel"
+            required
+            placeholder="Enter location"
+            [class.is-invalid]="location.invalid && (location.touched || submitted)">
+
+          <small class="error"
+                 *ngIf="location.invalid && (location.touched || submitted)">
+
+            <span *ngIf="location.errors?.['required']">
+              Location is required.
+            </span>
+
+          </small>
+
+        </div>
+
+        <!-- Description -->
+
+        <div class="form-group">
+
+          <label>Description</label>
+
+          <textarea
+            rows="5"
+            name="description"
+            [(ngModel)]="waste.description"
+            #description="ngModel"
+            required
+            minlength="10"
+            placeholder="Enter waste description"
+            [class.is-invalid]="description.invalid && (description.touched || submitted)">
+          </textarea>
+
+          <small class="error"
+                 *ngIf="description.invalid && (description.touched || submitted)">
+
+            <span *ngIf="description.errors?.['required']">
+              Description is required.
+            </span>
+
+            <span *ngIf="description.errors?.['minlength']">
+              Minimum 10 characters required.
+            </span>
+
+          </small>
+
+        </div>
+
+      </div>
+
+      <!-- ================= Submit Button ================= -->
+
+      <div class="button-section">
+
+        <button type="submit" class="upload-btn">
+
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+
+          Upload Waste
+
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+<app-footer>

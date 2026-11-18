@@ -1,0 +1,260 @@
+<div class="new-farmers-container">
+
+  <div class="page-header">
+
+    <div>
+      <h2>New Products</h2>
+
+      <p>
+        Review newly added products and verify their information.
+      </p>
+    </div>
+
+    <span class="pending-count">
+      {{ products.length }} Pending
+    </span>
+
+  </div>
+
+
+  <!-- DEBUG -->
+  <div style="padding: 15px; background: #eee; margin-bottom: 20px;">
+
+    <strong>
+      Products received: {{ products.length }}
+    </strong>
+
+  </div>
+
+
+  <!-- PRODUCTS -->
+  <div
+    class="farmer-card"
+    *ngFor="let product of products">
+
+    <div class="farmer-section">
+
+      <!-- PROFILE -->
+      <div class="farmer-profile">
+
+        <div class="avatar">
+
+          {{
+            product.p_name
+              ? product.p_name.charAt(0).toUpperCase()
+              : 'P'
+          }}
+
+        </div>
+
+
+        <div>
+
+          <h3>
+            {{ product.p_name }}
+          </h3>
+
+          <p>
+            {{ product.p_type }}
+          </p>
+
+          <span>
+            Product ID: #{{ product.p_id }}
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- DETAILS -->
+      <div class="farmer-details">
+
+        <div class="detail">
+
+          <label>Price</label>
+
+          <span>
+            ₹{{ product.price }}
+          </span>
+
+        </div>
+
+
+        <div class="detail">
+
+          <label>Description</label>
+
+          <span>
+            {{ product.description }}
+          </span>
+
+        </div>
+
+
+        <div class="detail">
+
+          <label>Product ID</label>
+
+          <span>
+            #{{ product.p_id }}
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- IMAGES -->
+    <div class="documents-section">
+
+      <h4>
+        Product Images
+      </h4>
+
+
+      <div class="documents">
+
+
+        <!-- IMAGE 1 -->
+        <div class="document-card">
+
+          <div class="document-image">
+
+            <img
+              *ngIf="getImage(product.img1)"
+              [src]="getImage(product.img1)"
+              alt="Product Image 1"
+            />
+
+            <span *ngIf="!getImage(product.img1)">
+              No Image
+            </span>
+
+          </div>
+
+
+          <div class="document-info">
+
+            <div>
+
+              <strong>
+                Product Image 1
+              </strong>
+
+            </div>
+
+
+            <button
+              type="button"
+              class="view-btn"
+              *ngIf="getImage(product.img1)"
+              (click)="viewDocument(getImage(product.img1))">
+
+              View
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- IMAGE 2 -->
+        <div class="document-card">
+
+          <div class="document-image">
+
+            <img
+              *ngIf="getImage(product.img2)"
+              [src]="getImage(product.img2)"
+              alt="Product Image 2"
+            />
+
+            <span *ngIf="!getImage(product.img2)">
+              No Image
+            </span>
+
+          </div>
+
+
+          <div class="document-info">
+
+            <div>
+
+              <strong>
+                Product Image 2
+              </strong>
+
+            </div>
+
+
+            <button
+              type="button"
+              class="view-btn"
+              *ngIf="getImage(product.img2)"
+              (click)="viewDocument(getImage(product.img2))">
+
+              View
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ACTIONS -->
+    <div class="card-footer">
+
+      <button
+        type="button"
+        class="reject-btn"
+        (click)="rejectProduct(product)">
+
+        ✕ Reject
+
+      </button>
+
+
+      <button
+        type="button"
+        class="approve-btn"
+        (click)="approveProduct(product)">
+
+        ✓ Approve Product
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- EMPTY -->
+  <div
+    class="empty-state"
+    *ngIf="products.length === 0">
+
+    <div class="empty-icon">
+      ✓
+    </div>
+
+    <h3>
+      No Pending Products
+    </h3>
+
+    <p>
+      There are no pending products to review.
+    </p>
+
+  </div>
+
+</div>

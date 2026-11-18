@@ -1,0 +1,1101 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: 'Poppins', sans-serif;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  background: #f8faf8;
+
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+
+  background: #f8faf8;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  width: 100%;
+  height: 64px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 20px;
+
+  background: #2e5d34;
+
+  border-bottom: 3px solid #f4c430;
+
+  z-index: 1200;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =========================================================
+   NAVBAR LEFT
+========================================================= */
+
+.left {
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   MENU BUTTON
+========================================================= */
+
+.menu-btn {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: #ffffff;
+
+  font-size: 24px;
+
+  cursor: pointer;
+
+  border-radius: 8px;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.menu-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.menu-btn:active {
+  transform: scale(0.9);
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  min-width: 0;
+}
+
+
+/* =========================================================
+   LOGO IMAGE
+========================================================= */
+
+.logo img {
+  width: 38px;
+  height: 38px;
+
+  flex-shrink: 0;
+
+  display: block;
+
+  object-fit: cover;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.05);
+}
+
+
+/* =========================================================
+   LOGO TEXT
+========================================================= */
+
+.logo a {
+  color: #f4c430;
+
+  text-decoration: none;
+
+  font-size: 20px;
+
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search {
+  flex: 1;
+
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 20px;
+}
+
+
+/* =========================================================
+   SEARCH INPUT
+========================================================= */
+
+.search input {
+  width: 100%;
+  max-width: 750px;
+
+  height: 42px;
+
+  padding: 10px 18px;
+
+  border: 1px solid transparent;
+  outline: none;
+
+  border-radius: 30px;
+
+  background: rgba(255, 255, 255, 0.15);
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.search input::placeholder {
+  color: #eeeeee;
+}
+
+.search input:focus {
+  background: rgba(255, 255, 255, 0.2);
+
+  border-color: rgba(244, 196, 48, 0.8);
+
+  box-shadow:
+    0 0 0 3px rgba(244, 196, 48, 0.12);
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.right {
+  display: flex;
+  align-items: center;
+
+  flex-shrink: 0;
+}
+
+.profile {
+  width: 40px;
+  height: 40px;
+
+  display: block;
+
+  border-radius: 50%;
+
+  border: 2px solid #f4c430;
+
+  object-fit: cover;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.profile:hover {
+  transform: scale(1.05);
+
+  box-shadow:
+    0 0 0 3px rgba(244, 196, 48, 0.2);
+}
+
+
+/* =========================================================
+   DESKTOP SIDEBAR
+========================================================= */
+
+.sidebar {
+  position: fixed;
+
+  top: 64px;
+  left: 0;
+
+  width: 260px;
+  height: calc(100vh - 64px);
+
+  display: flex;
+  flex-direction: column;
+
+  background: #ffffff;
+
+  border-right: 1px solid #dddddd;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  transform: translateX(-100%);
+
+  transition:
+    transform 0.3s ease;
+
+  z-index: 1100;
+
+  box-shadow:
+    3px 0 10px rgba(0, 0, 0, 0.2);
+}
+
+
+/* =========================================================
+   OPEN SIDEBAR
+========================================================= */
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+
+/* =========================================================
+   SIDEBAR HEADING
+========================================================= */
+
+.sidebar h4 {
+  padding: 20px;
+
+  color: #2e5d34;
+
+  font-size: 17px;
+
+  font-weight: 600;
+
+  border-bottom: 2px solid #f4c430;
+
+  background: #ffffff;
+}
+
+
+/* =========================================================
+   SIDEBAR LIST
+========================================================= */
+
+.sidebar ul {
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+
+/* =========================================================
+   SIDEBAR ITEM
+========================================================= */
+
+.sidebar li {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 15px 20px;
+
+  color: #333333;
+
+  font-size: 14px;
+
+  font-weight: 500;
+
+  cursor: pointer;
+
+  border-left: 4px solid transparent;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    padding-left 0.25s ease;
+}
+
+
+/* =========================================================
+   SIDEBAR ITEM ICON
+========================================================= */
+
+.sidebar li i {
+  color: #777777;
+
+  font-size: 14px;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+/* =========================================================
+   SIDEBAR HOVER
+========================================================= */
+
+.sidebar li:hover {
+  background: #edf7ee;
+
+  color: #2e5d34;
+
+  border-left-color: #f4c430;
+
+  padding-left: 24px;
+}
+
+.sidebar li:hover i {
+  color: #2e5d34;
+
+  transform: translateX(3px);
+}
+
+
+/* =========================================================
+   SIDEBAR ACTIVE
+========================================================= */
+
+.sidebar li.active {
+  background: #edf7ee;
+
+  color: #2e5d34;
+
+  border-left-color: #f4c430;
+}
+
+.sidebar li.active i {
+  color: #2e5d34;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.content {
+  width: 100%;
+
+  margin-top: 64px;
+
+  min-height: calc(100vh - 64px);
+
+  background: #f8faf8;
+
+  overflow-x: hidden;
+
+  // Add padding here if your routed pages need it.
+  // padding: 5px;
+}
+
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+
+.overlay {
+  position: fixed;
+
+  top: 64px;
+  left: 0;
+
+  width: 100%;
+  height: calc(100vh - 64px);
+
+  background: rgba(0, 0, 0, 0.35);
+
+  z-index: 1000;
+
+  animation: overlayFade 0.2s ease;
+}
+
+
+/* =========================================================
+   OVERLAY ANIMATION
+========================================================= */
+
+@keyframes overlayFade {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE BOTTOM NAVIGATION
+========================================================= */
+
+.mobile-bottom-nav {
+  display: none;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  /* -------------------------------------------------------
+     NAVBAR
+  ------------------------------------------------------- */
+
+  .navbar {
+    height: 62px;
+
+    padding: 0 12px;
+
+    border-bottom-width: 2px;
+  }
+
+
+  /* -------------------------------------------------------
+     LEFT
+  ------------------------------------------------------- */
+
+  .left {
+    gap: 8px;
+  }
+
+
+  /* -------------------------------------------------------
+     MENU BUTTON
+     
+     Hidden because mobile uses bottom navigation.
+  ------------------------------------------------------- */
+
+  .menu-btn {
+    display: none;
+  }
+
+
+  /* -------------------------------------------------------
+     LOGO
+  ------------------------------------------------------- */
+
+  .logo {
+    gap: 8px;
+  }
+
+  .logo img {
+    width: 36px;
+    height: 36px;
+
+    border-radius: 8px;
+  }
+
+
+  /* -------------------------------------------------------
+     HIDE LOGO TEXT
+  ------------------------------------------------------- */
+
+  .logo a span {
+    display: none;
+  }
+
+
+  /* -------------------------------------------------------
+     SEARCH
+  ------------------------------------------------------- */
+
+  .search {
+    padding: 0 8px;
+  }
+
+  .search input {
+    width: 100%;
+
+    max-width: none;
+
+    height: 36px;
+
+    padding: 8px 14px;
+
+    font-size: 12px;
+  }
+
+
+  /* -------------------------------------------------------
+     PROFILE
+  ------------------------------------------------------- */
+
+  .profile {
+    width: 36px;
+    height: 36px;
+  }
+
+
+  /* -------------------------------------------------------
+     DESKTOP SIDEBAR
+     
+     Completely hidden on mobile.
+  ------------------------------------------------------- */
+
+  .sidebar {
+    display: none !important;
+  }
+
+
+  /* -------------------------------------------------------
+     OVERLAY
+     
+     Not needed on mobile.
+  ------------------------------------------------------- */
+
+  .overlay {
+    display: none !important;
+  }
+
+
+  /* -------------------------------------------------------
+     CONTENT
+  ------------------------------------------------------- */
+
+  .content {
+    width: 100%;
+
+    margin-top: 62px !important;
+
+    min-height: calc(100vh - 62px);
+
+    padding-bottom: 74px;
+
+    overflow-x: hidden;
+  }
+
+
+  /* -------------------------------------------------------
+     MOBILE BOTTOM NAV
+  ------------------------------------------------------- */
+
+  .mobile-bottom-nav {
+
+    position: fixed;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    width: 100%;
+
+    height: 68px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    background: #ffffff;
+
+    border-top: 1px solid #dddddd;
+
+    box-shadow:
+      0 -3px 15px rgba(0, 0, 0, 0.08);
+
+    z-index: 2000;
+
+    padding-bottom: env(safe-area-inset-bottom);
+
+  }
+
+
+  /* -------------------------------------------------------
+     MOBILE NAV ITEM
+  ------------------------------------------------------- */
+
+  .mobile-nav-item {
+
+    flex: 1;
+
+    min-width: 0;
+
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 4px;
+
+    color: #777777;
+
+    text-decoration: none;
+
+    font-size: 10px;
+
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+      color 0.2s ease,
+      transform 0.2s ease;
+  }
+
+
+  /* -------------------------------------------------------
+     MOBILE NAV ICON
+  ------------------------------------------------------- */
+
+  .mobile-nav-item i {
+
+    display: block;
+
+    font-size: 21px;
+
+    line-height: 1;
+
+    transition:
+      transform 0.2s ease;
+  }
+
+
+  /* -------------------------------------------------------
+     MOBILE NAV LABEL
+  ------------------------------------------------------- */
+
+  .mobile-nav-item span {
+
+    display: block;
+
+    max-width: 100%;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+
+    font-size: 9px;
+
+    line-height: 1.2;
+  }
+
+
+  /* -------------------------------------------------------
+     MOBILE ACTIVE
+  ------------------------------------------------------- */
+
+  .mobile-nav-item.active {
+
+    color: #2e5d34;
+
+    font-weight: 600;
+  }
+
+
+  .mobile-nav-item.active i {
+
+    transform: scale(1.08);
+
+  }
+
+
+  /* -------------------------------------------------------
+     TOUCH EFFECT
+  ------------------------------------------------------- */
+
+  .mobile-nav-item:active {
+
+    transform: scale(0.92);
+
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  /* -------------------------------------------------------
+     NAVBAR
+  ------------------------------------------------------- */
+
+  .navbar {
+
+    height: 60px;
+
+    padding: 0 10px;
+
+  }
+
+
+  /* -------------------------------------------------------
+     LOGO IMAGE
+  ------------------------------------------------------- */
+
+  .logo img {
+
+    width: 34px;
+    height: 34px;
+
+  }
+
+
+  /* -------------------------------------------------------
+     SEARCH
+  ------------------------------------------------------- */
+
+  .search {
+
+    padding: 0 6px;
+
+  }
+
+  .search input {
+
+    height: 34px;
+
+    padding: 7px 12px;
+
+    font-size: 11px;
+
+  }
+
+
+  /* -------------------------------------------------------
+     PROFILE
+  ------------------------------------------------------- */
+
+  .profile {
+
+    width: 34px;
+    height: 34px;
+
+  }
+
+
+  /* -------------------------------------------------------
+     CONTENT
+  ------------------------------------------------------- */
+
+  .content {
+
+    margin-top: 60px !important;
+
+    min-height: calc(100vh - 60px);
+
+    padding-bottom: 72px;
+
+  }
+
+
+  /* -------------------------------------------------------
+     BOTTOM NAV
+  ------------------------------------------------------- */
+
+  .mobile-bottom-nav {
+
+    height: 64px;
+
+  }
+
+
+  .mobile-nav-item i {
+
+    font-size: 20px;
+
+  }
+
+
+  .mobile-nav-item span {
+
+    font-size: 8px;
+
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL DEVICES
+========================================================= */
+
+@media (max-width: 360px) {
+
+  .navbar {
+
+    padding: 0 7px;
+
+  }
+
+
+  .logo img {
+
+    width: 32px;
+    height: 32px;
+
+  }
+
+
+  .search {
+
+    padding: 0 4px;
+
+  }
+
+
+  .search input {
+
+    height: 32px;
+
+    padding: 6px 10px;
+
+    font-size: 10px;
+
+  }
+
+
+  .profile {
+
+    width: 32px;
+    height: 32px;
+
+  }
+
+
+  .mobile-nav-item i {
+
+    font-size: 18px;
+
+  }
+
+
+  .mobile-nav-item span {
+
+    font-size: 7px;
+
+  }
+
+}
+
+
+/* =========================================================
+   SIDEBAR SCROLLBAR
+========================================================= */
+
+.sidebar::-webkit-scrollbar {
+
+  width: 6px;
+
+}
+
+.sidebar::-webkit-scrollbar-track {
+
+  background: #f5f5f5;
+
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+
+  background: #bbbbbb;
+
+  border-radius: 10px;
+
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+
+  background: #888888;
+
+}
+
+
+/* =========================================================
+   MOBILE SAFE AREA
+   For phones with home indicator
+========================================================= */
+
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+
+  @media (max-width: 768px) {
+
+    .mobile-bottom-nav {
+
+      padding-bottom: env(safe-area-inset-bottom);
+
+      height: calc(
+        68px + env(safe-area-inset-bottom)
+      );
+
+    }
+
+    .content {
+
+      padding-bottom: calc(
+        74px + env(safe-area-inset-bottom)
+      );
+
+    }
+
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .sidebar,
+  .menu-btn,
+  .logo img,
+  .profile,
+  .sidebar li,
+  .sidebar li i,
+  .mobile-nav-item,
+  .mobile-nav-item i {
+
+    transition: none;
+
+  }
+
+  .overlay {
+
+    animation: none;
+
+  }
+
+}
+
+
+/* =========================================================
+   OPTIONAL ROUTER PAGE TRANSITION
+========================================================= */
+
+/*
+   Use this only if you are using Angular:
+
+   RouterModule.forRoot(routes, {
+      enableViewTransitions: true
+   })
+
+   The actual ::view-transition-* styles should preferably
+   be placed in global styles.scss.
+*/
+
+::view-transition-old(admin-content) {
+  animation: customerPageOut 180ms ease-out both;
+}
+
+::view-transition-new(admin-content) {
+  animation: customerPageIn 280ms ease-out both;
+}
+
+
+@keyframes customerPageOut {
+
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+}
+
+
+@keyframes customerPageIn {
+
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}

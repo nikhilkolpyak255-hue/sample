@@ -1,0 +1,137 @@
+<nav #navbar class="navbar navbar-expand-lg navbar-custom">
+  <div class="container-fluid">
+
+    <!-- Logo -->
+    <a class="navbar-brand d-flex align-items-center brand-name" routerLink="/farmer/homepage" (click)="closeAll()">
+      <span class="logo-icon">🌾</span>
+      Farmer Connect
+    </a>
+
+    <!-- Toggle -->
+    <button class="navbar-toggler" type="button" (click)="toggleMenu($event)">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar -->
+    <div class="collapse navbar-collapse" [class.show]="menuOpen">
+
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+
+        <!-- About -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/farmer/aboutus" (click)="closeAll()">
+            About Us
+          </a>
+        </li>
+
+        <!-- Products -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" (click)="toggleDropdown('products', $event)">
+            Products
+
+            <svg class="dropdown-icon" [class.rotate]="isOpen('products')" xmlns="http://www.w3.org/2000/svg" width="16"
+              height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </a>
+
+          <ul class="dropdown-menu" [class.show]="isOpen('products')">
+            <li>
+              <a class="dropdown-item" routerLink="/farmer/addproduct" (click)="closeAll()">
+                Add Product
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" routerLink="/farmer/purchase-product" (click)="closeAll()">
+                View Product
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Fertilizers -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" routerLink="/farmer/buyfertilizer" (click)="closeAll()">
+            Fertilizers
+
+            <!-- <svg class="dropdown-icon" [class.rotate]="isOpen('fertilizers')" xmlns="http://www.w3.org/2000/svg"
+              width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg> -->
+          </a>
+
+          <!-- <ul class="dropdown-menu" [class.show]="isOpen('fertilizers')">
+            <li><a class="dropdown-item" (click)="closeAll()">Organic</a></li>
+            <li><a class="dropdown-item" (click)="closeAll()">Chemical</a></li>
+            <li><a class="dropdown-item" (click)="closeAll()">Bio Fertilizers</a></li>
+            <li><a class="dropdown-item" (click)="closeAll()">Soil Conditioners</a></li>
+          </ul> -->
+        </li>
+
+        <!-- Junction -->
+        <!-- <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" (click)="toggleDropdown('junction', $event)">
+            Junction
+
+            <svg class="dropdown-icon" [class.rotate]="isOpen('junction')" xmlns="http://www.w3.org/2000/svg" width="16"
+              height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </a>
+
+          <ul class="dropdown-menu" [class.show]="isOpen('junction')">
+            <li><a class="dropdown-item" (click)="closeAll()">Add Junction</a></li>
+            <li><a class="dropdown-item" (click)="closeAll()">Rent Junction</a></li>
+          </ul>
+        </li> -->
+        <!--Seeds-->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" routerLink="/farmer/add-seeds" (click)="closeAll()">
+            Seeds
+          </a>
+        </li>
+
+
+        <!-- Waste -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" (click)="toggleDropdown('waste', $event)">
+            Waste
+
+            <svg class="dropdown-icon" [class.rotate]="isOpen('waste')" xmlns="http://www.w3.org/2000/svg" width="16"
+              height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </a>
+
+          <ul class="dropdown-menu" [class.show]="isOpen('waste')">
+            <li><a class="dropdown-item" (click)="closeAll()" routerLink="/farmer/add-waste">Add Waste</a></li>
+            <li><a class="dropdown-item" (click)="closeAll()">View Waste</a></li>
+          </ul>
+        </li>
+
+        <!-- History -->
+        <li class="nav-item">
+          <a class="nav-link" (click)="closeAll()" routerLink="/farmer/history">
+            History
+          </a>
+        </li>
+
+        <!-- Profile -->
+        <li class="nav-item ms-lg-3">
+          <div class="profile-icon">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 12c2.7 0 4.9-2.2 4.9-4.9S14.7 2.2 12 2.2 7.1 4.4 7.1 7.1 9.3 12 12 12zm0 2.4c-3.3 0-9.8 1.6-9.8 4.9V22h19.6v-2.7c0-3.3-6.5-4.9-9.8-4.9z" />
+            </svg>
+          </div>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </div>
+</nav>
+
+<router-outlet></router-outlet>
